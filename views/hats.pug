@@ -1,0 +1,30 @@
+extends layout 
+
+block content
+
+  h1= "Search Results - "+title
+  p This will display some #{title} information.
+  button(type="button", class="btn btn-secondary") Show Hats
+
+  br
+  br
+
+  div(id="hats")
+
+  script.
+    let hats = [
+      {name: "Baseball Cap", size: "S", price: 15},
+      {name: "Cowboy Hat", size: "M", price: 25},
+      {name: "Top Hat", size: "L", price: 45}
+    ];
+
+    function showHats() {
+      let hatList = "";
+      for (let i = 0; i < hats.length; i++) {
+        hatList += `<p>${hats[i].name} - Size: ${hats[i].size} - $${hats[i].price}</p>`; 
+      }
+
+      document.getElementById("hats").innerHTML = hatList;
+    }
+
+    document.querySelector("button").addEventListener("click", showHats);
