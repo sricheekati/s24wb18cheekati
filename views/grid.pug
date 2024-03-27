@@ -1,0 +1,32 @@
+extends layout
+
+block content
+
+  h1= title
+
+  p This will display a grid
+
+  button(type="button", class="btn btn-secondary") Show Grid
+
+  br
+  br
+
+  div(id="grid")
+
+  script.
+    let rows = #{query.rows};
+    let cols = #{query.cols};
+
+    function showGrid() {
+     let grid = "";
+      for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < cols; j++) {
+          grid += `<span>${i},${j} </span>`;
+        }
+        grid += "<br>";  
+      }
+
+      document.getElementById("grid").innerHTML = grid;
+    }
+
+    document.querySelector("button").addEventListener("click", showGrid);
