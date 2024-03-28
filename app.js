@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var hRouter = require('./routes/hats');
 var gRouter = require('./routes/grid');
+var pRouter = require('./routes/pick');
 var app = express();
 
 // view engine setup
@@ -24,6 +25,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/hats', hRouter);
 app.use('/grid', gRouter);
+//app.use('/random', pRouter);
+app.use('/pick', pRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

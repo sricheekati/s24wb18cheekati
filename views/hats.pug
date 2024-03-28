@@ -1,30 +1,31 @@
-extends layout 
+extends layout
 
 block content
-
-  h1= "Search Results - "+title
+  h1= title
   p This will display some #{title} information.
   button(type="button", class="btn btn-secondary") Show Hats
 
   br
   br
 
-  div(id="hats")
+  
+  div.container-fluid
+    div.row
+      -
+        let results = [
+          { hats_type: 'baseball cap', size: 'small', price: 15 },
+          { hats_type: 'cowboy hat', size: 'Medium', price: 25 },
+          { hats_type: 'top hat', size: 'Small', price: 45 }
+        ]
+        
+      each hats,index in results
+        .col-sm-2(onclick=`buy(${index})`)
+          p hats Type: #{hats.hats_type}
+          p Size: #{hats.size}
+          p Price: $#{hats.price.toFixed(2)}
 
+  a(href="/") Back to index
   script.
-    let hats = [
-      {name: "Baseball Cap", size: "S", price: 15},
-      {name: "Cowboy Hat", size: "M", price: 25},
-      {name: "Top Hat", size: "L", price: 45}
-    ];
-
-    function showHats() {
-      let hatList = "";
-      for (let i = 0; i < hats.length; i++) {
-        hatList += `<p>${hats[i].name} - Size: ${hats[i].size} - $${hats[i].price}</p>`; 
-      }
-
-      document.getElementById("hats").innerHTML = hatList;
+    function buy(index) {
+        alert(`You purchased item ${index}`);
     }
-
-    document.querySelector("button").addEventListener("click", showHats);
